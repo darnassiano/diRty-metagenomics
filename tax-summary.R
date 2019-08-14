@@ -1,6 +1,6 @@
-#!/usr/bin/env/Rscript
+#!/usr/bin/env Rscript
 
-library(dplyr)
+suppressPackageStartupMessages(library(dplyr))
 library(stringr)
 
 # Recupera la informacion taxonómica
@@ -56,6 +56,7 @@ td = taxdata(table)
 for(i in c("k","p","c","o","f","g")){
   txsum = taxsum(tx,td,i)
   outfile = paste(i,file,sep=".")
-  write.table(txsum,outfile,quote=F,sep="\t",row.names=F,col.names=F)
+  message("Generating file ",outfile)
+  write.table(txsum,outfile,quote=F,sep="\t",row.names=F,col.names=T)
 }
-print("Done!")
+message("Done!")
